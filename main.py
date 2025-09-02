@@ -1,16 +1,28 @@
-# This is a sample Python script.
+from fastapi import FastAPI
+import uvicorn
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+app = FastAPI()
+
+users = [
+    {
+        "id": 1,
+        "name": "Иван",
+        "surname": "Иванов",
+        "age": 25
+    },
+    {
+        "id": 2,
+        "name": "Сергей",
+        "surname": "Петров",
+        "age": 30
+    }
+]
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+@app.get("/users")
+def get_users():
+    return users
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    uvicorn.run("main:app", reload=True)
