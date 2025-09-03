@@ -26,9 +26,13 @@ async def test_get_users():
         name = get_all_users()[0]["name"]
         surname = get_all_users()[0]["surname"]
         age = get_all_users()[0]["age"]
+
         response = await async_client.get(f"/users/{uuid}")
+
         assert response.status_code == 200
+
         data = response.json()
+
         assert data["uuid"] == uuid
         assert data["name"] == name
         assert data["surname"] == surname
