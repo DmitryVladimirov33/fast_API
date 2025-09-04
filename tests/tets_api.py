@@ -33,6 +33,7 @@ async def test_get_users():
 
         data = response.json()
 
+        assert data["id"] is not None
         assert data["uuid"] == uuid
         assert data["name"] == name
         assert data["surname"] == surname
